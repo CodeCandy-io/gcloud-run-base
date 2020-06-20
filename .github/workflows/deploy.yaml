@@ -23,9 +23,9 @@ jobs:
       - uses: devmasx/cached-docker-build-push@v0.1.1
         with:
           image_name: gcr.io/media-analyzer/media-analyzer
-      # - run: |
-      #     gcloud run deploy $APP_NAME \
-      #       --project $GCP_PROJECT_ID \
-      #       --image gcr.io/$GCP_PROJECT_ID/$APP_NAME \
-      #       --platform managed \
-      #       --region us-central1
+      - run: |
+          gcloud run deploy $APP_NAME \
+            --project $GCP_PROJECT_ID \
+            --image gcr.io/$GCP_PROJECT_ID/$APP_NAME \
+            --platform managed \
+            --region us-central1
