@@ -6,7 +6,7 @@ on:
       - "master"
 
 env:
-  GCP_PROJECT: media-analyzer
+  GCP_PROJECT_ID: media-analyzer
   APP_NAME: media-analyzer
 
 jobs:
@@ -23,11 +23,11 @@ jobs:
       - run: gcloud auth configure-docker
       - uses: devmasx/cached-docker-build-push@v0.1.1
         with:
-          image_name: gcr.io/$GCP_PROJECT/$APP_NAME
+          image_name: gcr.io/$GCP_PROJECT_ID/$APP_NAME
       - run: |
           gcloud run deploy $APP_NAME \
-            --project $GCP_PROJECT \
-            --image gcr.io/$GCP_PROJECT/$APP_NAME \
+            --project $GCP_PROJECT_ID \
+            --image gcr.io/$GCP_PROJECT_ID/$APP_NAME \
             --platform managed \
             --region us-central1
 

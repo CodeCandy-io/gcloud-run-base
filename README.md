@@ -11,12 +11,16 @@ See more: https://cloud.google.com/functions/docs/concepts/iam
 
 - GCP_SA_KEY
 
-  This key should be created, encoded as a Base64 string (eg. cat my-key.json | base64 on macOS), and stored as a secret.
+  This key should be created, encoded as a Base64 string and stored as a github secret.
+
+```
+cat my-key.json | base64
+```
 
 - GCP_PROJECT_ID
 
 Your Google cloud project id
 
-- GCP_FUNCTION_NAME
+- APP_NAME
 
-  Your function name
+  Your app name (create docker image)
