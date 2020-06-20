@@ -5,9 +5,14 @@ on:
     branches:
       - "master"
 
+env:
+  GCP_PROJECT: media-analyzer
+  APP_NAME: media-analyzer
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    enviroments:
     steps:
       - uses: actions/checkout@v1
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
@@ -18,11 +23,11 @@ jobs:
       - run: gcloud auth configure-docker
       - uses: devmasx/cached-docker-build-push@v0.1.1
         with:
-          image_name: gcr.io/docker-rails-258302/cloud-run-base
+          image_name: gcr.io/$GCP_PROJECT/$APP_NAME
       - run: |
-          gcloud run deploy cloud-run-base \
-            --project docker-rails-258302 \
-            --image gcr.io/docker-rails-258302/cloud-run-base \
+          gcloud run deploy $APP_NAME \
+            --project $GCP_PROJECT \
+            --image gcr.io/$GCP_PROJECT/$APP_NAME \
             --platform managed \
             --region us-central1
-      
+
